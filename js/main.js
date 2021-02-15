@@ -1,9 +1,12 @@
 window.onload = function () {
 	const colour_btn_els = document.querySelectorAll('.colours .colour');
 	const capacity_btn_els = document.querySelectorAll('.capacity .size');
+
+	const capacity2_btn_els = document.querySelectorAll('.capacity2 .size');
 	const choice_btn_els = document.querySelectorAll('.choice .product' )
-	const imagery_el = document.querySelector('.imagery');
-	const image_el_ph = document.querySelector('.imagery .image');
+
+	const imagery_el_ph = document.querySelector('.imagery.ph');
+	const image_el_ph = document.querySelector('.imagery.ph .image.ph');
 
 
 	const imagery_el_sh = document.querySelector('.imagery.sh');
@@ -44,6 +47,17 @@ $('[data-switch]').on('click', function (e) {
 		});
 	}
 
+	for (let i = 0; i < capacity2_btn_els.length; i++) {
+		let btn = capacity2_btn_els[i];
+
+		btn.addEventListener('click', function () {
+			document.querySelector('.capacity2 .size.selected').classList.remove('selected');
+			this.classList.add('selected');
+		});
+	}
+
+
+
 	for (let i = 0; i < choice_btn_els.length; i++) {
 		let btn = choice_btn_els[i];
 
@@ -59,15 +73,25 @@ $('[data-switch]').on('click', function (e) {
 		btn.addEventListener('click', function () {
 			document.querySelector('.colours .colour.selected').classList.remove('selected');
 			this.classList.add('selected');
-			if(currsect=='#phone')
+			if(currsect=='#phone'){
 			image_el_ph.src = "images/xr-" + this.dataset.name + '.png';
-			else if(currsect=='#shoes')
+			imagery_el_ph.style.backgroundColor = this.dataset.colour;
+			}
+
+			else if(currsect=='#shoes'){
 			image_el_sh.src = "images/sh-" + this.dataset.name + '.png';
+			imagery_el_sh.style.backgroundColor = this.dataset.colour;
 
+			}
 
-			imagery_el.style.backgroundColor = this.dataset.colour;
 		});
 	}
+
+
+	document.querySelector('.submit').addEventListener('click', function() {
+		
+		alert("success");
+	});
 
 
 }
